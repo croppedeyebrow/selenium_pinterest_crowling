@@ -175,8 +175,8 @@ def job():
       
         # 더 많은 URL을 여기에 추가할 수 있습니다.
     ]
-    username = "ljs2894@naver.com"  # 실제 사용자 이름 입력
-    password = "Lee289473007216!"  # 실제 비밀번호 입력
+    username = ""  # 실제 사용자 이름 입력
+    password = ""  # 실제 비밀번호 입력
     print(f"크롤링 시작: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")  # 크롤링 시작 시간 출력
     
     try:
