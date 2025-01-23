@@ -10,6 +10,7 @@ import time
 import os
 import random
 from datetime import datetime
+from urllib.parse import urlparse, parse_qs  # URL 파싱을 위한 모듈 추가
 
 def setup_driver():
     """웹 드라이버를 설정하고 반환하는 함수"""
@@ -64,8 +65,18 @@ def crawl_images(url, username, password):
         # 웹페이지 로드
         driver.get(url)  # 지정된 URL로 이동
         
+        # URL에서 검색어 추출
+        parsed_url = urlparse(url)  # URL 파싱
+        query_params = parse_qs(parsed_url.query)  # 쿼리 매개변수 파싱
+        
+         # 'q' 매개변수에서 검색어 추출 (키가 'q'인지 확인)
+        search_term = query_params.get('q', [''])[0] if 'q' in query_params else ''  # 'q' 매개변수에서 검색어 추출
+        
+        # 디버깅을 위한 출력
+        print(f"추출된 검색어: {search_term}")  # 검색어 출력
+        
         # 스크롤 다운을 통해 더 많은 이미지 로드
-        for _ in range(10):  # 10번 스크롤
+        for _ in range(15):  # 10번 스크롤
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # 페이지 맨 아래로 스크롤
             time.sleep(5)  # 스크롤 후 로딩 대기
         
@@ -77,12 +88,11 @@ def crawl_images(url, username, password):
         for img in images:
             try:
                 src = img.get_attribute('src')  # 이미지 URL
-                alt = img.get_attribute('alt')  # 이미지 대체 텍스트
                 if src and not src.endswith('gif'):  # gif 제외, 유효한 이미지만 저장
                     image_data.append({
                         'image_url': src,
-                        'alt_text': alt,
-                        'crawled_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # 크롤링 시간 기록
+                        'crawled_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),  # 크롤링 시간 기록
+                        'search_term': search_term  # URL에서 추출한 검색어 저장
                     })
             except Exception as e:
                 print(f"이미지 처리 중 오류 발생: {e}")  # 이미지 처리 중 오류 발생 시 메시지 출력
@@ -99,14 +109,17 @@ def save_to_csv(data, filename='pinterestcrowling.csv'):
     df = pd.DataFrame(data)  # 데이터프레임으로 변환
     
     # CSV 파일 존재 여부 확인 및 처리
-    if os.path.exists(filename):  # 문자열로 파일명 지정
-        # 기존 CSV 파일이 있다면 읽어와서 새 데이터와 병합
-        existing_df = pd.read_csv(filename)  # 기존 데이터프레임 읽기
-        df = pd.concat([existing_df, df], ignore_index=True)  # 데이터 병합
-    
-    # CSV 파일로 저장 (한글 깨짐 방지를 위해 utf-8-sig 인코딩 사용)
-    df.to_csv(filename, index=False, encoding='utf-8-sig')  # CSV 파일로 저장
-    print(f"데이터가 {filename}에 저장되었습니다.")  # 저장 완료 메시지 출력
+    try:
+        if os.path.exists(filename):  # 문자열로 파일명 지정
+            # 기존 CSV 파일이 있다면 읽어와서 새 데이터와 병합
+            existing_df = pd.read_csv(filename)  # 기존 데이터프레임 읽기
+            df = pd.concat([existing_df, df], ignore_index=True)  # 데이터 병합
+        
+        # CSV 파일로 저장 (한글 깨짐 방지를 위해 utf-8-sig 인코딩 사용)
+        df.to_csv(filename, index=False, encoding='utf-8-sig')  # CSV 파일로 저장
+        print(f"데이터가 {filename}에 저장되었습니다.")  # 저장 완료 메시지 출력
+    except Exception as e:
+        print(f"CSV 파일 저장 중 오류 발생: {e}")  # 오류 발생 시 메시지 출력
 
 def job():
     """크롤링 작업 실행"""
@@ -118,8 +131,8 @@ def job():
         "https://kr.pinterest.com/search/pins/?q=korean%20women%20summer%20fashion%20for%20work&rs=typed"
         # 더 많은 URL을 여기에 추가할 수 있습니다.
     ]
-    username = ""  # 실제 사용자 이름 입력
-    password = ""  # 실제 비밀번호 입력
+    username = "ljs2894@naver.com"  # 실제 사용자 이름 입력
+    password = "Lee289473007216!"  # 실제 비밀번호 입력
     print(f"크롤링 시작: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")  # 크롤링 시작 시간 출력
     
     try:
@@ -136,8 +149,8 @@ def job():
 
 def main():
     """메인 함수"""
-    #  첫 번째 실행 후 3분 후에 다른 URL로 크롤링
-    schedule.every(3).minutes.do(job)  # 3분마다 job 함수 실행
+    #  첫 번째 실행 후 5분 후에 다른 URL로 크롤링
+    schedule.every(5).minutes.do(job)  # 3분마다 job 함수 실행
     
     # 프로그램 시작 시 최초 1회 실행
     job()  # 최초 크롤링 실행
@@ -146,7 +159,7 @@ def main():
     # 60초마다 pending 상태의 작업이 있는지 확인하고 실행
     while True:
         schedule.run_pending()  # 예약된 작업 실행
-        time.sleep(60)  # 60초 대기
+        time.sleep(80)  # 80초 대기
 
 if __name__ == "__main__":
     main()  # 메인 함수 실행
