@@ -128,7 +128,10 @@ def job():
         "https://kr.pinterest.com/search/pins/?rs=ac&len=2&q=korean%20women%20fashion%20winter%20asian%20style&eq=asian%20women%20winter%20fa&etslf=19820",
         "https://kr.pinterest.com/search/pins/?q=korean%20women%20fashion%20summer%20asian%20style&rs=typed",  # 추가 URL
         "https://kr.pinterest.com/search/pins/?q=korean%20women%20fashion%20rain%20day&rs=typed",
-        "https://kr.pinterest.com/search/pins/?q=korean%20women%20summer%20fashion%20for%20work&rs=typed"
+        "https://kr.pinterest.com/search/pins/?q=korean%20women%20summer%20fashion%20for%20work&rs=typed",
+        "https://kr.pinterest.com/search/pins/?q=korean%20women%20fall%20fashion%20for%20work&rs=typed",
+        "https://kr.pinterest.com/search/pins/?q=winter%20season%27s%20korean%20women%20fashion%20for%20work&rs=typed",
+        "https://kr.pinterest.com/search/pins/?q=resort%20wear%20for%20korean%20women&rs=typed",
         # 더 많은 URL을 여기에 추가할 수 있습니다.
     ]
     username = "ljs2894@naver.com"  # 실제 사용자 이름 입력
