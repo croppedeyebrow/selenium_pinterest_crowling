@@ -11,10 +11,20 @@
 
 </span>
 
-<span style="color:red">
+<span style="color:orange">
 <b>
 핀터레스트는 본질적으로 크롤링을 방지하는 기능을 가지고 있습니다.
 따라서, 너무 짧은 주기는 피하고 한번에 많이 불러온 후 주기를 넓히거나 다양한 아이디를 활용하시길
+</b>
+
+</span>
+
+<span style="color:blue">
+<b>
+파일 수집 내용 : img_url, search_term, crawled_at
+</b>
+<b>
+파일 수집 목적 : 패션 코디 이미지 추출해서, 추후 전처리용 raw data로 활용
 </b>
 
 </span>
