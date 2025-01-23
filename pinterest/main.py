@@ -9,6 +9,7 @@ import schedule
 import time
 import os
 import random
+import requests  # 추가
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs  # URL 파싱을 위한 모듈 추가
 
@@ -54,7 +55,12 @@ def login(driver, username, password):
 
 def crawl_images(url, username, password):
     """지정된 URL에서 이미지 크롤링"""
-    driver = setup_driver()  # 드라이버 설정
+    # 이미지 저장 폴더 생성
+    img_folder = 'crowlingimg'
+    if not os.path.exists(img_folder):
+        os.makedirs(img_folder)
+        
+    driver = setup_driver()
     try:
         # 로그인 수행
         login(driver, username, password)  # 로그인 함수 호출
@@ -87,21 +93,50 @@ def crawl_images(url, username, password):
         # 각 이미지의 정보 추출
         for img in images:
             try:
-                src = img.get_attribute('src')  # 이미지 URL
-                if src and not src.endswith('gif'):  # gif 제외, 유효한 이미지만 저장
-                    image_data.append({
-                        'image_url': src,
-                        'crawled_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),  # 크롤링 시간 기록
-                        'search_term': search_term  # URL에서 추출한 검색어 저장
-                    })
+                src = img.get_attribute('src')
+                if src and not src.endswith('gif'):
+                    # 이미지 파일명 생성 (검색어와 타임스탬프 포함)
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    img_filename = f"{search_term}_{timestamp}_{len(image_data)}.jpg"
+                    img_path = os.path.join(img_folder, img_filename)
+                    
+                    # 이미지 다운로드 및 저장
+                    try:
+                        response = requests.get(src)
+                        if response.status_code == 200:
+                            with open(img_path, 'wb') as f:
+                                f.write(response.content)
+                            
+                            image_data.append({
+                                'image_url': src,
+                                'image_filename': img_filename,
+                                'crawled_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                'search_term': search_term
+                            })
+                    except Exception as e:
+                        print(f"이미지 다운로드 중 오류: {e}")
             except Exception as e:
-                print(f"이미지 처리 중 오류 발생: {e}")  # 이미지 처리 중 오류 발생 시 메시지 출력
+                print(f"이미지 처리 중 오류 발생: {e}")
         
-        return image_data  # 크롤링한 이미지 데이터 반환
+        return image_data
                 
     finally:
         # 브라우저 자원 해제
         driver.quit()  # 드라이버 종료
+
+def download_image(url, filename):
+    """이미지를 다운로드하여 저장하는 함수"""
+    try:
+        response = requests.get(url)  # 이미지 URL에서 데이터 요청
+        if response.status_code == 200:  # 요청이 성공적일 경우
+            with open(filename, 'wb') as f:  # 파일 열기
+                f.write(response.content)  # 이미지 데이터 저장
+            print(f"이미지 저장 완료: {filename}")  # 저장 완료 메시지 출력
+        else:
+            print(f"이미지 다운로드 실패: {url}")  # 실패 메시지 출력
+    except Exception as e:
+        print(f"이미지 다운로드 중 오류 발생: {e}")  # 오류 발생 시 메시지 출력    
+        
 
 def save_to_csv(data, filename='pinterestcrowling.csv'):
     """크롤링한 데이터를 CSV 파일로 저장"""
