@@ -1,4 +1,4 @@
-    #csv파일에 있는 이미지를 기반으로, tpo/age/preference 만들기
+    #csv파일에 있는 이미지를 기반으로, tpo/weather_condition/preference 만들기
 
 import pandas as pd
 import os
