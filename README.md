@@ -21,12 +21,13 @@
 
 <span style="color:blue">
 <b>
-파일 수집 내용 : img_url, search_term, crawled_at
+파일 수집 내용 : img_url,  img_filename, search_term, crawled_at // img_filename은 폴더에 따로 저장.!
 </b>
+</br>
 <b>
 파일 수집 목적 : 패션 코디 이미지 추출해서, 추후 전처리용 raw data로 활용
 </b>
-
+</br>
 <b>
 파일 수집 후 전처리 : 검색어에서 키워드 추출해서, 키워드에 맞는 컬럼으로 재배치.
 </b>

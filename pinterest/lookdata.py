@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 def categorize_image(search_term):
-    """검색어를 기반으로 TPO, 연령대, 선호도를 분류"""
+    """검색어를 기반으로 TPO, 날씨씨, 추구 컨셉을을 분류"""
     
     # TPO 분류
     tpo = 'daily'  # 기본값
