@@ -18,7 +18,8 @@
 </b>
 
 </span>
-
+</br>
+</br>
 <span style="color:blue">
 <b>
 파일 수집 내용 : img_url,  img_filename, search_term, crawled_at // img_filename은 폴더에 따로 저장.!
