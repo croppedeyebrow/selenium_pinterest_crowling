@@ -108,7 +108,7 @@ def crawl_images(url, username, password):
                                 f.write(response.content)
                             
                             image_data.append({
-                                'image_url': src,
+                                'coordinate_img': src,
                                 'image_filename': img_filename,
                                 'crawled_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                 'search_term': search_term

@@ -114,7 +114,7 @@ def update_csv_with_categories():
             df['coordinate_id'] = range(1, len(df) + 1)
             
             # image_url 컬럼을 coordinate_id와 tpo 사이에 추가
-            df = df[['coordinate_id', 'image_url', 'tpo', 'weather_condition', 'preference', 'target_age_group']]
+            df = df[['coordinate_id', 'coordinate_img', 'preference',  'target_age_group','tpo','weather_condition']]
             
             # 업데이트된 데이터프레임을 Coordinate.csv 파일로 저장
             df.to_csv(output_file, index=False, encoding='utf-8-sig')
