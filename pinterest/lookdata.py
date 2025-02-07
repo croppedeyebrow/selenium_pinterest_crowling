@@ -48,11 +48,36 @@ def categorize_image(search_term):
     elif 'classy' in search_term:
         preference = 'classy'
         
+        
+    # 나이 분류
+    
+    target_age_group = 'normal'  # 기본값
+    if 'early 20s' in search_term:
+        target_age_group = '20대 초반'
+    elif 'mid-20s' in search_term:
+        target_age_group = '20대 중반'
+    elif 'late 20s' in search_term:
+        target_age_group = '20대 후반'
+    elif 'early 30s' in search_term:
+        target_age_group = '30대 초반'
+    elif 'mid-30s' in search_term:
+        target_age_group = '30대 중반'
+    elif 'late 30s' in search_term:
+        target_age_group = '30대 후반'    
+        
     return {
         'tpo': tpo,
         'weather_condition': weather_condition,
-        'preference': preference
+        'preference': preference,
+        'target_age_group': target_age_group,
     }
+    
+
+
+        
+
+        
+
 
 def update_csv_with_categories():
     """CSV 파일에 카테고리 정보 추가"""
@@ -83,12 +108,13 @@ def update_csv_with_categories():
             df['tpo'] = categories.apply(lambda x: x['tpo'])
             df['weather_condition'] = categories.apply(lambda x: x['weather_condition'])
             df['preference'] = categories.apply(lambda x: x['preference'])
-            
+            df['target_age_group'] = categories.apply(lambda x: x['target_age_group'])
+
             # coordinate_id 추가 (1부터 시작하는 순차적 번호)
             df['coordinate_id'] = range(1, len(df) + 1)
             
             # image_url 컬럼을 coordinate_id와 tpo 사이에 추가
-            df = df[['coordinate_id', 'image_url', 'tpo', 'weather_condition', 'preference']]
+            df = df[['coordinate_id', 'image_url', 'tpo', 'weather_condition', 'preference', 'target_age_group']]
             
             # 업데이트된 데이터프레임을 Coordinate.csv 파일로 저장
             df.to_csv(output_file, index=False, encoding='utf-8-sig')

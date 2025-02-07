@@ -160,17 +160,18 @@ def job():
     """크롤링 작업 실행"""
     # 크롤링할 URL 목록 설정
     urls = [
-      "https://kr.pinterest.com/search/pins/?q=short%20sleeve%20classy%20outfit%20for%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=daily%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=summer%20daily%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=winter%20daily%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=resort%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=cute%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=spring%20cute%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=summer%20cute%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=authum%20cute%20outfit%20for%20korean%20women&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=winter%20cute%20outfit%20for%20korean%20women&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20early%2020s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20mid-20s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20late%2020s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20early%2030s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20mid-30s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20late%2030s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20mid-20s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20early%2030s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20mid-30s&rs=typed",
+      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20late%2030s&rs=typed",
       
       
         # 더 많은 URL을 여기에 추가할 수 있습니다.
