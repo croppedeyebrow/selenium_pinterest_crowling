@@ -43,18 +43,18 @@ def categorize_image(search_term):
                 
     # 스타일 선호도
     preference = 'all'  # 기본값
-    if 'cute' or 'lovely' in search_term:
-        preference = '러블리'
-    elif 'classy' or 'elegant' or 'demure' in search_term:
-        preference = '럭셔리'
-    elif 'casual' or 'comfortable' or 'sporty' or 'active' in search_term:
-        preference = '캐주얼'
-    elif 'street' or 'streetwear' in search_term:
-        preference = '스트릿'
-    elif 'modern' or 'modern chic' in search_term:
-        preference = '모던'
-    elif 'minimalist' or 'minimal' in search_term:
-        preference = '미니멀'
+    if 'cute' in search_term or 'lovely' in search_term:
+        preference = 'lovely'
+    elif 'classy' in search_term or 'elegant' in search_term or 'demure' in search_term:
+        preference = 'luxury'
+    elif 'casual' in search_term or 'comfortable' in search_term or 'sporty' in search_term or 'active' in search_term:
+        preference = 'casual'
+    elif 'street' in search_term or 'streetwear' in search_term:
+        preference = 'street'
+    elif 'modern' in search_term or 'modern chic' in search_term:
+        preference = 'modern'
+    elif 'minimalist' in search_term or 'minimal' in search_term:
+        preference = 'minimal'
 
         
 

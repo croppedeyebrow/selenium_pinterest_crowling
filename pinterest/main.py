@@ -146,17 +146,18 @@ def save_to_csv(data, filename='pinterestcrowling.csv'):
     # CSV 파일 존재 여부 확인 및 처리
     try:
         if os.path.exists(filename):  # 문자열로 파일명 지정
-            # 기존 CSV 파일이 있다면 읽어와서 새 데이터와 병합
-            existing_df = pd.read_csv(filename)  # 기존 데이터프레임 읽기
-            df = pd.concat([existing_df, df], ignore_index=True)  # 데이터 병합
+
+            df.to_csv(filename, mode='a', header=False, index=False, encoding='utf-8-sig')  # CSV 파일로 저장
+            print(f"데이터가 {filename}에 추가되었습니다.")  # 추가 완료 메시지 출력
         
-        # CSV 파일로 저장 (한글 깨짐 방지를 위해 utf-8-sig 인코딩 사용)
-        df.to_csv(filename, index=False, encoding='utf-8-sig')  # CSV 파일로 저장
-        print(f"데이터가 {filename}에 저장되었습니다.")  # 저장 완료 메시지 출력
+        else:
+            # 파일이 없으면 새로 생성 (헤더 포함)
+            df.to_csv(filename, index=False, encoding='utf-8-sig')  # CSV 파일로 저장
+            print(f"새 파일 {filename}이 생성되었습니다.")  # 생성 완료 메시지 출력
     except Exception as e:
         print(f"CSV 파일 저장 중 오류 발생: {e}")  # 오류 발생 시 메시지 출력
 
-def job(start_index=6):
+def job(start_index=0):
     """크롤링 작업 실행"""
     # 크롤링할 URL 목록 설정
     urls = [
