@@ -128,7 +128,7 @@ def update_csv_with_categories():
             df = df[['coordinate_id', 'coordinate_img', 'preference',  'target_age_group','tpo','weather_condition']]
             
             # 업데이트된 데이터프레임을 Coordinate.csv 파일로 저장
-            df.to_csv(output_file, index=False, encoding='utf-8-sig')
+            df.to_csv(output_file, index=False, encoding='UTF-8')
             print("카테고리 정보가 성공적으로 추가되어 Coordinate.csv에 저장되었습니다.")
         else:
             print("이미 카테고리 정보가 존재합니다.")
