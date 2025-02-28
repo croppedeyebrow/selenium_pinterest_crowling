@@ -156,28 +156,54 @@ def save_to_csv(data, filename='pinterestcrowling.csv'):
     except Exception as e:
         print(f"CSV 파일 저장 중 오류 발생: {e}")  # 오류 발생 시 메시지 출력
 
-def job():
+def job(start_index=6):
     """크롤링 작업 실행"""
     # 크롤링할 URL 목록 설정
     urls = [
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20early%2020s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20mid-20s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20late%2020s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20early%2030s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20mid-30s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=Short-sleeve%20high-end%20clothing%20for%20women%20in%20their%20late%2030s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20mid-20s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20early%2030s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20mid-30s&rs=typed",
-      "https://kr.pinterest.com/search/pins/?q=demure%20outfit%20for%20women%20in%20their%20late%2030s&rs=typed",
-      
-      
-        # 더 많은 URL을 여기에 추가할 수 있습니다.
+    #  미니멀
+     # 20대
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+     #30대    
+
+     #40대    
+    
+    #   모던
+      #20대
+    "https://kr.pinterest.com/search/pins/?q=modern%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=modern%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=modern%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+    
+    #   캐주얼
+     #20대
+    "https://kr.pinterest.com/search/pins/?q=casual%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=casual%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=casual%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+    
+    #   스트릿
+     #20대
+    "https://kr.pinterest.com/search/pins/?q=streetwear%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=streetwear%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=streetwear%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+    #   러블리
+     #20대
+    "https://kr.pinterest.com/search/pins/?q=cute%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=cute%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=cute%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+    
+    #   럭셔리
+       #20대
+    "https://kr.pinterest.com/search/pins/?q=elegant%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=elegant%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=elegant%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed"
     ]
-    username = ""  # 실제 사용자 이름 입력
-    password = ""  # 실제 비밀번호 입력
+    
+    # 시작 인덱스부터 URL 목록 자르기
+    urls = urls[start_index:]
+    
+    username = "ljs2894@naver.com"  # 실제 사용자 이름 입력
+    password = "Lee289473007216!"  # 실제 비밀번호 입력
     print(f"크롤링 시작: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")  # 크롤링 시작 시간 출력
     
     try:
@@ -194,17 +220,19 @@ def job():
 
 def main():
     """메인 함수"""
-    #  첫 번째 실행 후 5분 후에 다른 URL로 크롤링
-    schedule.every(5).minutes.do(job)  # 3분마다 job 함수 실행
+    # 시작할 URL 인덱스 설정 (0부터 시작)
+    start_index = 5  # 예: 6번째 URL부터 시작 (인덱스는 0부터 시작)
     
-    # 프로그램 시작 시 최초 1회 실행
-    job()  # 최초 크롤링 실행
+    # 프로그램 시작 시 최초 1회 실행 (지정된 인덱스부터)
+    job(start_index)
+    
+    # 이후 실행은 처음부터 다시 시작
+    schedule.every(30).minutes.do(job, start_index=0)
     
     # 스케줄러 무한 루프
-    # 60초마다 pending 상태의 작업이 있는지 확인하고 실행
     while True:
-        schedule.run_pending()  # 예약된 작업 실행
-        time.sleep(80)  # 80초 대기
+        schedule.run_pending()
+        time.sleep(60)
 
 if __name__ == "__main__":
-    main()  # 메인 함수 실행
+    main()
