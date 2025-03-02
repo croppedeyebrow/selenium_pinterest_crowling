@@ -9,40 +9,35 @@ def categorize_image(search_term):
     # TPO 분류
     tpo = 'daily'  # 기본값
     if 'resort' in search_term:
-        tpo = 'resort'
+        tpo = 'travel'
     elif 'classy' in search_term or 'demure' in search_term:
-        tpo = 'wedding guest'
+        tpo = 'meeting'
     elif 'cute' in search_term:
         tpo = 'date'
-    elif 'party' in search_term:
-        tpo = 'party'   
+    elif 'exercise' in search_term or 'gym' in search_term:
+        tpo = 'exercise'   
     elif 'work' in search_term:
-        tpo = 'office'  
+        tpo = 'work'  
                    
     # 계절 분류
-    weather_condition = 'all'  # 기본값
+    weather_condition = 'warm'  # 기본값
     if 'summer' in search_term:
         weather_condition = 'hot'
-    elif 'winter' in search_term:
+    elif 'winter' in search_term or 'cold' in search_term:
         weather_condition = 'cold'
     elif 'spring' in search_term:
         weather_condition = 'warm'
     elif 'autumn' in search_term:
         weather_condition = 'chill'
-    elif 'cold' in search_term:
-        weather_condition = 'cold wave' 
-    elif 'summer umbrella' in search_term:
-        weather_condition = 'summer umbrella rainy'        
-    elif 'winter umbrella' in search_term:
-        weather_condition = 'winter umbrella rainy'          
-    elif 'spring umbrella' in search_term:
-        weather_condition = 'spring umbrella rainy'          
-    elif 'authum umbrella' in search_term:
-        weather_condition = 'authum umbrella rainy'          
+    elif 'snowy' in search_term:
+        weather_condition = 'snowy'        
+    elif 'rainy' in search_term:
+        weather_condition = 'rainy'        
+        
    
                 
     # 스타일 선호도
-    preference = 'all'  # 기본값
+    preference = 'minimal'  # 기본값
     if 'cute' in search_term or 'lovely' in search_term:
         preference = 'lovely'
     elif 'classy' in search_term or 'elegant' in search_term or 'demure' in search_term:

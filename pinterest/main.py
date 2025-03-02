@@ -162,10 +162,37 @@ def job(start_index=0):
     # 크롤링할 URL 목록 설정
     urls = [
     #  미니멀
-     # 20대
-    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20early%2020s&rs=typed",
-    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20mid%2020s&rs=typed",
-    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20late%2020s&rs=typed",
+     
+    #20대 -따뜻함 
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20early%2020s%20in%20the%20spring&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20mid%2020s%20in%20the%20spring&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20late%2020s%20in%20the%20spring&rs=typed",
+    
+     # 20대-더움움
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20early%2020s%20in%20the%20summer&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20mid%2020s%20in%20the%20summer&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20late%2020s%20in%20the%20summer&rs=typed",
+    
+    # 20대 - 시원함
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20early%2020s%20in%20the%20autumn&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20mid%2020s%20in%20the%20autumn&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20late%2020s%20in%20the%20autumn&rs=typed"
+    
+    #20대- 추움
+    "https://kr.pinterest.com/search/pins/?q=minimal%20clothing%20for%20women%20in%20their%20early%2020s%20in%20the%20winter&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20mid%2020s%20in%20the%20winter&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=minimal%20outfit%20for%20women%20in%20their%20late%2020s%20in%20the%20winter&rs=typed"
+    
+    #20대 - 눈
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20early%2020s%20on%20a%20snowy%20day&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20mid%2020s%20on%20a%20snowy%20day&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20late%2020s%20on%20a%20snowy%20day&rs=typed",
+    
+    #20대 - 비
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20early%2020s%20on%20a%20rainy%20day&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20mid%2020s%20on%20a%20rainy%20day&rs=typed",
+    "https://kr.pinterest.com/search/pins/?q=Minimal%20outfits%20for%20women%20in%20their%20late%2020s%20on%20a%20rainy%20day&rs=typed"
+    
      #30대    
 
      #40대    
@@ -222,7 +249,7 @@ def job(start_index=0):
 def main():
     """메인 함수"""
     # 시작할 URL 인덱스 설정 (0부터 시작)
-    start_index = 5  # 예: 6번째 URL부터 시작 (인덱스는 0부터 시작)
+    start_index = 21  # 예: 6번째 URL부터 시작 (인덱스는 0부터 시작)
     
     # 프로그램 시작 시 최초 1회 실행 (지정된 인덱스부터)
     job(start_index)
